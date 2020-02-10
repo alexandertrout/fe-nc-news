@@ -16,22 +16,35 @@ export const StyledLink = styled(Link)`
 `;
 
 export const Card = styled.section`
+  padding: 2vw;
   min-height: 20vh;
-  margin: 3vw;
-  border-radius: 10px;
   overflow: auto;
   background-color: whitesmoke;
   color: black;
   text-decoration: none;
   display: flex;
   flex-direction: column;
+  align-items: left;
+  text-align: left;
+`;
+
+export const Info = styled.section`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
   align-items: center;
+`;
+
+export const Circles = styled.section`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
 `;
 
 export const Circle = styled.div`
   margin: 1vh 3vw;
-  height: 10vh;
-  width: 10vh;
+  height: 8vh;
+  width: 8vh;
   background-color: black;
   color: white;
   text-decoration: none;

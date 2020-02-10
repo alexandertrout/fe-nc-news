@@ -3,8 +3,8 @@ const axios = require("axios");
 exports.getAllArticles = () => {
   return axios
     .get("https://alex-be-nc-news.herokuapp.com/api/articles")
-    .then(response => {
-      console.log(response);
+    .then(({ data }) => {
+      return data;
     });
   // .catch(error => {
   //   console.log(error);
@@ -15,7 +15,7 @@ exports.getAllTopics = () => {
   return axios
     .get(`https://alex-be-nc-news.herokuapp.com/api/topics`)
     .then(response => {
-      console.log(response);
+      // console.log(response);
     });
   // .catch(error => {
   //   console.log(error);
@@ -36,8 +36,8 @@ exports.getAllUsers = () => {
 exports.getArticleById = article_id => {
   return axios
     .get(`https://alex-be-nc-news.herokuapp.com/api/articles/${article_id}`)
-    .then(response => {
-      console.log(response);
+    .then(({ data: { article } }) => {
+      return article;
     });
   // .catch(error => {
   //   console.log(error);
@@ -49,8 +49,8 @@ exports.getCommentsByArticleId = article_id => {
     .get(
       `https://alex-be-nc-news.herokuapp.com/api/articles/${article_id}/comments`
     )
-    .then(response => {
-      console.log(response);
+    .then(({ data: { comments } }) => {
+      return comments;
     });
   // .catch(error => {
   //   console.log(error);

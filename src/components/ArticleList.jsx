@@ -16,17 +16,17 @@ class ArticleList extends Component {
     ]
   };
   componentDidMount = () => {
-    //call the database, GET all articles and set in state.
-    api.getAllArticles().then(response => {
-      // console.log(response, "IN ARTICLE LIST");
+    api.getAllArticles().then(({ articles }) => {
+      console.log(articles);
+      this.setState({ articles });
     });
   };
 
   render() {
-    // call ArticleCard and map over each article in state. Whole article card should be a link to the article.
+    // console.log(this.state);
     return (
       <Background>
-        ARTICLES LIST
+        ARTICLES
         {this.state.articles.map(article => {
           return (
             <StyledLink to={`/articles/${article.article_id}/*`}>

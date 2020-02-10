@@ -1,12 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { Card, Circle } from "../styling/styled-components";
-
-const Circles = styled.section`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr;
-`;
+import { Card, Info, Circles, Circle } from "../styling/styled-components";
 
 class ArticleCard extends Component {
   state = {
@@ -16,16 +10,24 @@ class ArticleCard extends Component {
   componentDidMount = () => {};
 
   render() {
+    let textPreview = `${this.props.article.body}`;
+    let shortText = textPreview.substring(0, 80);
+    console.log(shortText);
+
     return (
       <Card>
-        ARTICLE CARD
-        <h2> TITLE</h2>
-        <p>TEXT MORE STUFF</p>
-        <Circles>
-          <Circle>ALEX</Circle>
-          <Circle>6</Circle>
-          <Circle>10</Circle>
-        </Circles>
+        <h2> {this.props.article.title}</h2>
+        <Info>
+          <p>
+            Topic: {this.props.article.topic} <br />
+            Author: {this.props.article.author} <br />
+            Votes: {this.props.article.votes}
+          </p>
+          <Circles>
+            <Circle>{this.props.article.votes}</Circle>
+            <Circle>{this.props.article.comment_count}</Circle>
+          </Circles>
+        </Info>
       </Card>
     );
   }
