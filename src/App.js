@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Router, Link } from "@reach/router";
+import { Router } from "@reach/router";
 // import styled from "styled-components";
 import HeaderBar from "./components/HeaderBar";
 import ArticleList from "./components/ArticleList";
@@ -16,10 +16,11 @@ class App extends Component {
         {/*only one of the following will show, filling the rest of the screen */}
         <section className="Main-area">
           <Router>
-            <ArticleList path="/*" />
-            <SingleArticle path="/articles/:article_id/*" />
+            <ArticleList path="/" />
+            <ArticleList path="/articles/:topic_slug" />
+            <SingleArticle path="/article/:article_id/*" />
             <UsersList path="/users/*" />
-            <TopicsList path="/topics/*" />
+            {/* <TopicsList path="/topics/:topic_slug" /> */}
           </Router>
         </section>
       </div>

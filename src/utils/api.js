@@ -1,25 +1,21 @@
 const axios = require("axios");
 
-exports.getAllArticles = () => {
+exports.getAllArticles = params => {
   return axios
-    .get("https://alex-be-nc-news.herokuapp.com/api/articles")
-    .then(({ data }) => {
-      return data;
+    .get("https://alex-be-nc-news.herokuapp.com/api/articles", {
+      params
+    })
+    .then(({ data: { articles } }) => {
+      return articles;
     });
-  // .catch(error => {
-  //   console.log(error);
-  // });
 };
 
 exports.getAllTopics = () => {
   return axios
     .get(`https://alex-be-nc-news.herokuapp.com/api/topics`)
-    .then(response => {
-      // console.log(response);
+    .then(({ data: { topics } }) => {
+      return topics;
     });
-  // .catch(error => {
-  //   console.log(error);
-  // });
 };
 
 exports.getAllUsers = () => {
@@ -57,19 +53,23 @@ exports.getCommentsByArticleId = article_id => {
   // });
 };
 
-exports.postCommentByArticleId = (article_id, req_body) => {
+exports.postCommentByArticleId = (article_id, username, body) => {
+  return axios.post(
+    `https://alex-be-nc-news.herokuapp.com/api/articles/${article_id}/comments`,
+    { username, body }
+  );
+};
+
+exports.deleteCommentById = comment_id => {
   return axios
-    .post(
-      `https://alex-be-nc-news.herokuapp.com/api/articles/${article_id}/comments`,
-      { req_body }
-    )
-    .then(function(response) {
+    .delete(`https://alex-be-nc-news.herokuapp.com/api/comments/${comment_id}`)
+    .then(response => {
       console.log(response);
     });
-  // .catch(function(error) {
-  //   console.log(error);
-  // });
 };
+
+// delete COMMENT by comment id
+// .delete("/api/comments/2")
 
 exports.getUserByUsername = username => {
   return axios
@@ -82,8 +82,12 @@ exports.getUserByUsername = username => {
   // });
 };
 
-// delete COMMENT by comment id
-
-// patch COMMENT by comment id (votes)
-
-// patch ARTICLE by article id (votes)
+exports.patchById = (type, comment_id, vote) => {
+  return axios
+    .patch(`https://alex-be-nc-news.herokuapp.com/api/${type}/${comment_id}`, {
+      inc_votes: vote
+    })
+    .then(response => {
+      console.log(response);
+    });
+};

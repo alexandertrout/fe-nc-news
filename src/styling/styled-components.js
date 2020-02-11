@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Router, Link } from "@reach/router";
+import { Link } from "@reach/router";
 
 export const Background = styled.section`
   margin: 1vh 0vw;
@@ -13,6 +13,7 @@ export const Background = styled.section`
 
 export const StyledLink = styled(Link)`
   text-decoration: none;
+  color: whitesmoke;
 `;
 
 export const Card = styled.section`
@@ -33,6 +34,7 @@ export const Info = styled.section`
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
   align-items: center;
+  justify-content: center;
 `;
 
 export const Circles = styled.section`

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import styled from "styled-components";
+// import styled from "styled-components";
 import { Card, Info, Circles, Circle } from "../styling/styled-components";
 
 class ArticleCard extends Component {
@@ -10,9 +10,9 @@ class ArticleCard extends Component {
   componentDidMount = () => {};
 
   render() {
-    let textPreview = `${this.props.article.body}`;
-    let shortText = textPreview.substring(0, 80);
-    console.log(shortText);
+    // let textPreview = `${this.props.article.body}`;
+    // let shortText = textPreview.substring(0, 80);
+    // console.log(shortText);
 
     return (
       <Card>
