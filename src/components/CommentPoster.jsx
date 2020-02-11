@@ -40,10 +40,14 @@ class CommentPoster extends Component {
   render() {
     return (
       <div>
-        <form onChange={this.handleChange} onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit}>
           <label>
             POST A COMMENT:
-            <input type="text" value={this.state.comment.body} />
+            <input
+              onChange={this.handleChange}
+              type="text"
+              value={this.state.comment.body}
+            />
             <button>Post</button>
           </label>
         </form>

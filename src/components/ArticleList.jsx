@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-// import { Router, Link } from "@reach/router";
 import ArticleCard from "./ArticleCard";
 import * as api from "../utils/api";
-// import styled from "styled-components";
 import { Background, StyledLink } from "../styling/styled-components";
 
 class ArticleList extends Component {
@@ -41,7 +39,6 @@ class ArticleList extends Component {
   };
 
   render() {
-    // console.log(this.state, this.props);
     return (
       <Background>
         <form onChange={this.handleChange}>

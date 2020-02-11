@@ -4,7 +4,7 @@ import { Card, Info } from "../styling/styled-components";
 import Voter from "./Voter";
 import * as api from "../utils/api";
 
-const FormatP = styled.p`
+const FormatDiv = styled.div`
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -36,13 +36,13 @@ class CommentCard extends Component {
         <h3>{this.props.comment.author}</h3>
         <Info>
           <p>{this.props.comment.body}</p>
-          <FormatP>
+          <FormatDiv>
             <Voter
               type={"comments"}
-              votes={this.props.comment.votes}
+              votes={this.props.comment.votes || 0}
               id={this.props.comment.comment_id}
             />
-          </FormatP>
+          </FormatDiv>
         </Info>
         <button onClick={this.handleClick}>DELETE</button>
       </Card>

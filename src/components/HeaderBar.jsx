@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "@reach/router";
 import styled from "styled-components";
 import { StyledLink } from "../styling/styled-components";
 import * as api from "../utils/api";
@@ -23,7 +22,6 @@ class HeaderBar extends Component {
   };
 
   render() {
-    // console.log(this.state);
     return (
       <TopBar>
         HEADER BAR
@@ -74,8 +72,6 @@ const Menu = styled.div`
   color: white;
   text-decoration: none;
   display: grid;
-  /* display: flex;
-  justify-content: space-around; */
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 `;

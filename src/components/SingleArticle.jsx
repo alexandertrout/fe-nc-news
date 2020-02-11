@@ -8,7 +8,7 @@ import CommentPoster from "./CommentPoster";
 class SingleArticle extends Component {
   state = {
     article: {},
-    comments: [{}]
+    comments: []
   };
   componentDidMount = () => {
     const promises = [
@@ -45,7 +45,7 @@ class SingleArticle extends Component {
           <p>{this.state.article.body}</p>
           <Voter
             type={"articles"}
-            votes={this.state.article.votes}
+            votes={this.state.article.votes || 0}
             id={this.state.article.article_id}
           />
         </Card>
