@@ -55,3 +55,9 @@ export const Circle = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
+export const Loading = styled.div`
+  margin: 10vh;
+  display: flex;
+  justify-content: space-around;
+`;

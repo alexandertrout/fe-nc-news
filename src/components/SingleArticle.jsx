@@ -1,14 +1,16 @@
 import React, { Component } from "react";
 import * as api from "../utils/api";
-import { Background, Card } from "../styling/styled-components";
+import { Background, Card, Loading } from "../styling/styled-components";
 import CommentCard from "./CommentCard";
 import Voter from "./Voter";
 import CommentPoster from "./CommentPoster";
+import { BarLoader } from "react-spinners";
 
 class SingleArticle extends Component {
   state = {
     article: {},
-    comments: []
+    comments: [],
+    isLoading: true
   };
   componentDidMount = () => {
     const promises = [
@@ -16,20 +18,30 @@ class SingleArticle extends Component {
       api.getCommentsByArticleId(this.props.article_id)
     ];
     Promise.all(promises).then(dataArray => {
-      this.setState({ article: dataArray[0], comments: dataArray[1] });
+      this.setState({
+        article: dataArray[0],
+        comments: dataArray[1],
+        isLoading: false
+      });
     });
   };
   componentDidUpdate = prevProps => {
     if (prevProps.article_id !== this.props.article_id) {
+      this.setState({ isLoading: true });
       const promises = [
         api.getArticleById(this.props.article_id),
         api.getCommentsByArticleId(this.props.article_id)
       ];
       Promise.all(promises).then(dataArray => {
-        this.setState({ article: dataArray[0], comments: dataArray[1] });
+        this.setState({
+          article: dataArray[0],
+          comments: dataArray[1],
+          isLoading: false
+        });
       });
     }
   };
+
   addComment = comment => {
     this.setState(currentState => {
       return { comments: [comment, ...currentState.comments] };
@@ -37,6 +49,16 @@ class SingleArticle extends Component {
   };
 
   render() {
+    if (this.state.isLoading)
+      return (
+        <Loading>
+          <BarLoader
+            size={200}
+            color={"black"}
+            loading={this.state.isLoading}
+          />
+        </Loading>
+      );
     return (
       <Background>
         SINGLE ARTICLE CARD
