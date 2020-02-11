@@ -4,9 +4,9 @@ import * as api from "../utils/api";
 class CommentPoster extends Component {
   state = {
     comment: {
+      // HARDCODED USER FOR NOW (author)
       author: "tickle122",
       article_id: this.props.article_id,
-      votes: 0,
       body: ""
     }
   };
@@ -21,12 +21,15 @@ class CommentPoster extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    api.postCommentByArticleId(
-      this.props.article_id,
-      this.state.comment.author,
-      this.state.comment.body
-    );
-    this.props.addComment(this.state.comment);
+    api
+      .postCommentByArticleId(
+        this.props.article_id,
+        this.state.comment.author,
+        this.state.comment.body
+      )
+      .then(comment => {
+        this.props.addComment(comment);
+      });
     this.setState(currentState => {
       let newState = { ...currentState.comment };
       newState.body = "";
@@ -35,7 +38,6 @@ class CommentPoster extends Component {
   };
 
   render() {
-    console.log(this.state.comment);
     return (
       <div>
         <form onChange={this.handleChange} onSubmit={this.handleSubmit}>

@@ -37,7 +37,6 @@ class SingleArticle extends Component {
   };
 
   render() {
-    console.log(this.state);
     return (
       <Background>
         SINGLE ARTICLE CARD

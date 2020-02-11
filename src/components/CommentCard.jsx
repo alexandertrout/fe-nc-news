@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { Card, Info } from "../styling/styled-components";
 import Voter from "./Voter";
+import * as api from "../utils/api";
 
 const FormatP = styled.p`
   text-align: center;
@@ -13,13 +14,23 @@ class CommentCard extends Component {
   state = {
     article: {},
     // HARDCODED USER FOR NOW
-    user: "tickle122"
+    user: "tickle122",
+    isDeleted: false
   };
 
   componentDidMount = () => {};
 
+  handleClick = () => {
+    if (this.props.comment.author === this.state.user) {
+      api.deleteCommentById(this.props.comment.comment_id);
+      this.setState({ isDeleted: true });
+    } else {
+      console.log("WRONG USER");
+    }
+  };
+
   render() {
-    // console.log(this.props);
+    if (this.state.isDeleted === true) return <Card> Comment Deleted </Card>;
     return (
       <Card>
         <h3>{this.props.comment.author}</h3>
@@ -31,10 +42,9 @@ class CommentCard extends Component {
               votes={this.props.comment.votes}
               id={this.props.comment.comment_id}
             />
-            {/* VOTER.JSX IN HERE (PASS DOWN this.props.comment.vote)*/}
           </FormatP>
         </Info>
-        <button onClick={handleClick}>DELETE</button>
+        <button onClick={this.handleClick}>DELETE</button>
       </Card>
     );
   }

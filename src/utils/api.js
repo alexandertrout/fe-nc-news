@@ -54,22 +54,21 @@ exports.getCommentsByArticleId = article_id => {
 };
 
 exports.postCommentByArticleId = (article_id, username, body) => {
-  return axios.post(
-    `https://alex-be-nc-news.herokuapp.com/api/articles/${article_id}/comments`,
-    { username, body }
-  );
-};
-
-exports.deleteCommentById = comment_id => {
   return axios
-    .delete(`https://alex-be-nc-news.herokuapp.com/api/comments/${comment_id}`)
-    .then(response => {
-      console.log(response);
+    .post(
+      `https://alex-be-nc-news.herokuapp.com/api/articles/${article_id}/comments`,
+      { username, body }
+    )
+    .then(({ data: { comment } }) => {
+      return comment;
     });
 };
 
-// delete COMMENT by comment id
-// .delete("/api/comments/2")
+exports.deleteCommentById = comment_id => {
+  return axios.delete(
+    `https://alex-be-nc-news.herokuapp.com/api/comments/${comment_id}`
+  );
+};
 
 exports.getUserByUsername = username => {
   return axios
