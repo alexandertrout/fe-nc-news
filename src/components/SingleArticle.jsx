@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import * as api from "../utils/api";
-import { Background, Card /*Circle*/ } from "../styling/styled-components";
+import { Background, Card } from "../styling/styled-components";
 import CommentCard from "./CommentCard";
 import Voter from "./Voter";
 import CommentPoster from "./CommentPoster";

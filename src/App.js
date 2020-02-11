@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import { Router } from "@reach/router";
-// import styled from "styled-components";
 import HeaderBar from "./components/HeaderBar";
 import ArticleList from "./components/ArticleList";
 import SingleArticle from "./components/SingleArticle";
 import UsersList from "./components/UsersList";
-import TopicsList from "./components/TopicsList";
 
 class App extends Component {
   render() {

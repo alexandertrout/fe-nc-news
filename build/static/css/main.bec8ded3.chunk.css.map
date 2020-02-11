@@ -1,0 +1,1 @@
+{"version":3,"sources":["index.css"],"names":[],"mappings":"AAAA,iBACE,QAAS,CACT,SAAU,CACV,iBAAkB,CAClB,8BACF,CAEA,KACE,oBACF","file":"main.bec8ded3.chunk.css","sourcesContent":[".outer-container {\n  margin: 0;\n  padding: 0;\n  text-align: center;\n  text-decoration: none !important;\n}\n\n.nav {\n  text-decoration: none;\n}\n"]}
