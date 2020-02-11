@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 import ArticleCard from "./ArticleCard";
 import * as api from "../utils/api";
-import { Background, StyledLink } from "../styling/styled-components";
+import { Background, StyledLink, Loading } from "../styling/styled-components";
+import CommentPoster from "./CommentPoster";
+import { BarLoader } from "react-spinners";
 
 class ArticleList extends Component {
   state = {
     articles: [],
-    sort_by: "created_at"
+    sort_by: "created_at",
+    isLoading: true
   };
   componentDidMount = () => {
     const params = {
@@ -14,7 +17,7 @@ class ArticleList extends Component {
       sort_by: this.state.sort_by
     };
     api.getAllArticles(params).then(articles => {
-      this.setState({ articles });
+      this.setState({ articles: articles, isLoading: false });
     });
   };
 
@@ -28,7 +31,7 @@ class ArticleList extends Component {
         sort_by: this.state.sort_by
       };
       api.getAllArticles(params).then(articles => {
-        this.setState({ articles });
+        this.setState({ articles: articles, isLoading: false });
       });
     }
   };
@@ -39,6 +42,16 @@ class ArticleList extends Component {
   };
 
   render() {
+    if (this.state.isLoading)
+      return (
+        <Loading>
+          <BarLoader
+            size={200}
+            color={"black"}
+            loading={this.state.isLoading}
+          />
+        </Loading>
+      );
     return (
       <Background>
         <form onChange={this.handleChange}>
