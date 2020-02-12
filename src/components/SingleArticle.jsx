@@ -48,6 +48,16 @@ class SingleArticle extends Component {
     });
   };
 
+  handleClick = () => {
+    if (this.props.comment.author === this.state.user) {
+      console.log("RIGHT USER");
+      // api.deleteArticleById(this.props.comment.comment_id);
+      // this.setState({ isDeleted: true });
+    } else {
+      console.log("WRONG USER");
+    }
+  };
+
   render() {
     if (this.state.isLoading)
       return (
@@ -61,7 +71,6 @@ class SingleArticle extends Component {
       );
     return (
       <main className="middle-area--content">
-        SINGLE ARTICLE CARD
         <Card>
           <h2>{this.state.article.title}</h2>
           <p>{this.state.article.body}</p>
@@ -70,14 +79,22 @@ class SingleArticle extends Component {
             votes={this.state.article.votes || 0}
             id={this.state.article.article_id}
           />
+          {<button onClick={this.handleClick}>DELETE</button>}
         </Card>
-        COMMENTS
+        <h3>COMMENTS</h3>
         <CommentPoster
           article_id={this.state.article.article_id}
           addComment={this.addComment}
+          user={this.props.user}
         />
         {this.state.comments.map(comment => {
-          return <CommentCard key={comment.comment_id} comment={comment} />;
+          return (
+            <CommentCard
+              key={comment.comment_id}
+              comment={comment}
+              user={this.props.user}
+            />
+          );
         })}
       </main>
     );

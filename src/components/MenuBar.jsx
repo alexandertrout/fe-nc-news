@@ -6,7 +6,7 @@ import * as api from "../utils/api";
 class MenuBar extends Component {
   state = {
     isClicked: false,
-    topics: [{ slug: undefined }]
+    topics: [{ slug: "" }]
   };
 
   componentDidMount = () => {
@@ -32,7 +32,6 @@ class MenuBar extends Component {
             </StyledLink>
           );
         })}
-        <StyledLink to="/">USERS</StyledLink>
       </div>
     );
   }

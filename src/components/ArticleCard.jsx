@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import { Card, Info, Circles, Circle } from "../styling/styled-components";
+import {
+  Card,
+  Info,
+  CirclesArea,
+  VoteCircle,
+  CommentCircle
+} from "../styling/styled-components";
 
 class ArticleCard extends Component {
   state = {
@@ -18,10 +24,10 @@ class ArticleCard extends Component {
             Author: {this.props.article.author} <br />
             Votes: {this.props.article.votes}
           </p>
-          <Circles>
-            <Circle>{this.props.article.votes}</Circle>
-            <Circle>{this.props.article.comment_count}</Circle>
-          </Circles>
+          <CirclesArea>
+            <VoteCircle>{this.props.article.votes}</VoteCircle>
+            <CommentCircle>{this.props.article.comment_count}</CommentCircle>
+          </CirclesArea>
         </Info>
       </Card>
     );

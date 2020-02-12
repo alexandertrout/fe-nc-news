@@ -3,6 +3,15 @@ import ArticleCard from "./ArticleCard";
 import * as api from "../utils/api";
 import { StyledLink, Loading } from "../styling/styled-components";
 import { BarLoader } from "react-spinners";
+import styled from "styled-components";
+
+const StyledForm = styled.form`
+  background-color: orange;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+`;
 
 class ArticleList extends Component {
   state = {
@@ -54,16 +63,22 @@ class ArticleList extends Component {
       );
     return (
       <main className="middle-area--content">
-        <form onChange={this.handleChange}>
-          <label>
-            Order By:
-            <select id="" name="" form="">
-              <option value="created_at">Date Created</option>
-              <option value="comment_count">Comment Count</option>
-              <option value="votes">Votes</option>
-            </select>
-          </label>
-        </form>
+        <StyledForm onChange={this.handleChange}>
+          <select className="form-select" id="" name="" form="">
+            <option className="form-select" value="created_at">
+              Customise Article Order:
+            </option>
+            <option className="form-select" value="created_at">
+              Date Created
+            </option>
+            <option className="form-select" value="comment_count">
+              Comment Count
+            </option>
+            <option className="form-select" value="votes">
+              Votes
+            </option>
+          </select>
+        </StyledForm>
         {this.state.articles.map(article => {
           return (
             <StyledLink

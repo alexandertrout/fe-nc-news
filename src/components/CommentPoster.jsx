@@ -1,13 +1,25 @@
 import React, { Component } from "react";
 import * as api from "../utils/api";
+import { StyledButton } from "../styling/styled-components";
 
 class CommentPoster extends Component {
   state = {
     comment: {
-      // HARDCODED USER FOR NOW (author)
-      author: "tickle122",
+      author: this.props.user,
       article_id: this.props.article_id,
       body: ""
+    },
+    isInputClicked: false
+  };
+
+  handleFocus = event => {
+    this.setState({ isInputClicked: true });
+  };
+
+  handleBlur = event => {
+    if (event.target.value) {
+    } else {
+      this.setState({ isInputClicked: false });
     }
   };
 
@@ -33,25 +45,24 @@ class CommentPoster extends Component {
     this.setState(currentState => {
       let newState = { ...currentState.comment };
       newState.body = "";
-      return { comment: newState };
+      return { comment: newState, isInputClicked: false };
     });
   };
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            POST A COMMENT:
-            <input
-              onChange={this.handleChange}
-              type="text"
-              value={this.state.comment.body}
-            />
-            <button>Post</button>
-          </label>
-        </form>
-      </div>
+      <form onSubmit={this.handleSubmit}>
+        <input
+          className={this.state.isInputClicked ? "clicked-input" : undefined}
+          onFocus={this.handleFocus}
+          onBlur={this.handleBlur}
+          onChange={this.handleChange}
+          type="text"
+          value={this.state.comment.body}
+          placeholder="Post a comment..."
+        />
+        <StyledButton>Post</StyledButton>
+      </form>
     );
   }
 }

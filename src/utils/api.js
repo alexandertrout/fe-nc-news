@@ -21,12 +21,9 @@ exports.getAllTopics = () => {
 exports.getAllUsers = () => {
   return axios
     .get(`https://alex-be-nc-news.herokuapp.com/api/users`)
-    .then(response => {
-      console.log(response);
+    .then(({ data: { users } }) => {
+      return users;
     });
-  // .catch(error => {
-  //   console.log(error);
-  // });
 };
 
 exports.getArticleById = article_id => {
@@ -82,11 +79,19 @@ exports.getUserByUsername = username => {
 };
 
 exports.patchById = (type, comment_id, vote) => {
-  return axios
-    .patch(`https://alex-be-nc-news.herokuapp.com/api/${type}/${comment_id}`, {
+  return axios.patch(
+    `https://alex-be-nc-news.herokuapp.com/api/${type}/${comment_id}`,
+    {
       inc_votes: vote
-    })
-    .then(response => {
-      console.log(response);
-    });
+    }
+  );
+};
+
+exports.postArticle = ({ title, topic, username, body }) => {
+  return axios.post(`https://alex-be-nc-news.herokuapp.com/api/articles`, {
+    title,
+    topic,
+    username,
+    body
+  });
 };

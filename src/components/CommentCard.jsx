@@ -13,8 +13,7 @@ const FormatDiv = styled.div`
 class CommentCard extends Component {
   state = {
     article: {},
-    // HARDCODED USER FOR NOW
-    user: "tickle122",
+    user: this.props.user,
     isDeleted: false
   };
 
@@ -44,7 +43,9 @@ class CommentCard extends Component {
             />
           </FormatDiv>
         </Info>
-        <button onClick={this.handleClick}>DELETE</button>
+        {this.props.comment.author === this.state.user && (
+          <button onClick={this.handleClick}>DELETE</button>
+        )}
       </Card>
     );
   }
