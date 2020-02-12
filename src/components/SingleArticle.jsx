@@ -1,6 +1,12 @@
 import React, { Component } from "react";
 import * as api from "../utils/api";
-import { Card, Loading } from "../styling/styled-components";
+import {
+  Card,
+  Loading,
+  StyledLink,
+  StyledButton,
+  StyledDeleteButton
+} from "../styling/styled-components";
 import CommentCard from "./CommentCard";
 import Voter from "./Voter";
 import CommentPoster from "./CommentPoster";
@@ -10,7 +16,8 @@ class SingleArticle extends Component {
   state = {
     article: {},
     comments: [],
-    isLoading: true
+    isLoading: true,
+    isDeleted: false
   };
   componentDidMount = () => {
     const promises = [
@@ -49,10 +56,9 @@ class SingleArticle extends Component {
   };
 
   handleClick = () => {
-    if (this.props.comment.author === this.state.user) {
-      console.log("RIGHT USER");
-      // api.deleteArticleById(this.props.comment.comment_id);
-      // this.setState({ isDeleted: true });
+    if (this.props.user === this.state.article.author) {
+      api.deleteArticleById(this.state.article.article_id);
+      this.setState({ isDeleted: true });
     } else {
       console.log("WRONG USER");
     }
@@ -69,6 +75,15 @@ class SingleArticle extends Component {
           />
         </Loading>
       );
+    if (this.state.isDeleted)
+      return (
+        <main className="middle-area--content">
+          <Card>Article Has Been Deleted</Card>
+          <StyledLink to="/">
+            <StyledButton>HOME</StyledButton>
+          </StyledLink>
+        </main>
+      );
     return (
       <main className="middle-area--content">
         <Card>
@@ -79,7 +94,11 @@ class SingleArticle extends Component {
             votes={this.state.article.votes || 0}
             id={this.state.article.article_id}
           />
-          {<button onClick={this.handleClick}>DELETE</button>}
+          {this.props.user === this.state.article.author && (
+            <StyledDeleteButton onClick={this.handleClick}>
+              DELETE
+            </StyledDeleteButton>
+          )}
         </Card>
         <h3>COMMENTS</h3>
         <CommentPoster

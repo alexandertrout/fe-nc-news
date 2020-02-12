@@ -95,3 +95,9 @@ exports.postArticle = ({ title, topic, username, body }) => {
     body
   });
 };
+
+exports.deleteArticleById = article_id => {
+  return axios.delete(
+    `https://alex-be-nc-news.herokuapp.com/api/articles/${article_id}`
+  );
+};

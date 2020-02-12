@@ -93,3 +93,14 @@ export const StyledButton = styled.button`
   font-size: 14px;
   border-radius: 8px;
 `;
+
+export const StyledDeleteButton = styled.button`
+  margin: 0.5vh 0 1vh;
+  height: 3vh;
+  width: 10vh;
+  border: none;
+  background-color: red;
+  color: white;
+  font-size: 14px;
+  border-radius: 8px;
+`;
