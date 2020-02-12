@@ -1,15 +1,17 @@
 import styled from "styled-components";
 import { Link } from "@reach/router";
+// import { keyframes } from "styled-components";
+// import { fadeInRightBig, rubberBand } from "react-animations";
 
-export const Background = styled.section`
-  margin: 1vh 0vw;
-  min-height: 150vh;
-  overflow: auto;
-  background-color: orange;
-  color: black;
-  text-decoration: none;
-  border-radius: 10px;
-`;
+// export const fadeAnimation = keyframes`${fadeInRightBig}`;
+// export const FadeInDiv = styled.div`
+//   animation: 1s ${fadeAnimation};
+// `;
+
+// export const rubberAnimation = keyframes`${rubberBand}`;
+// export const RubberDiv = styled.div`
+//   animation: 1s ${rubberAnimation};
+// `;
 
 export const StyledLink = styled(Link)`
   text-decoration: none;

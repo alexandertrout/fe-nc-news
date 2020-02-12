@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import ArticleCard from "./ArticleCard";
 import * as api from "../utils/api";
-import { Background, StyledLink, Loading } from "../styling/styled-components";
-import CommentPoster from "./CommentPoster";
+import { StyledLink, Loading } from "../styling/styled-components";
 import { BarLoader } from "react-spinners";
 
 class ArticleList extends Component {
   state = {
     articles: [],
     sort_by: "created_at",
-    isLoading: true
+    isLoading: true,
+    rubber: false
   };
   componentDidMount = () => {
     const params = {
@@ -38,13 +38,13 @@ class ArticleList extends Component {
 
   handleChange = event => {
     let sort_by = event.target.value;
-    this.setState({ sort_by });
+    this.setState({ sort_by, rubber: true });
   };
 
   render() {
     if (this.state.isLoading)
       return (
-        <Loading>
+        <Loading className="loader">
           <BarLoader
             size={200}
             color={"black"}
@@ -53,7 +53,7 @@ class ArticleList extends Component {
         </Loading>
       );
     return (
-      <Background>
+      <main className="middle-area--content">
         <form onChange={this.handleChange}>
           <label>
             Order By:
@@ -74,7 +74,7 @@ class ArticleList extends Component {
             </StyledLink>
           );
         })}
-      </Background>
+      </main>
     );
   }
 }

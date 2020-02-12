@@ -1,8 +1,60 @@
+@font-face {
+  font-family: customFont;
+  src: url(./fonts/KCIllHand.otf);
+  font-weight: normal;
+}
+
+body {
+  margin: 0px;
+  padding: 0px;
+}
 .outer-container {
+  height: 100vh;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: 10vh 82vh 8vh;
   margin: 0;
   padding: 0;
   text-align: center;
   text-decoration: none !important;
+}
+.header-bar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  margin: 0;
+  font-family: customFont;
+  background-color: black;
+  color: white;
+}
+
+.middle-area {
+  grid-row-start: 2;
+  grid-row-end: 3;
+  background-color: orange;
+  color: black;
+  text-decoration: none;
+  overflow: auto;
+}
+
+.middle-area--content {
+  min-height: 150vh;
+}
+
+.bottom-menu {
+  text-align: center;
+  line-height: 8vh;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  font-family: customFont;
+  color: white;
+  background-color: black;
+  display: flex;
+  width: 100%;
+  overflow-x: scroll;
+  justify-content: space-around;
 }
 
 .nav {

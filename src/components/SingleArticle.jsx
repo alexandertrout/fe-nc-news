@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import * as api from "../utils/api";
-import { Background, Card, Loading } from "../styling/styled-components";
+import { Card, Loading } from "../styling/styled-components";
 import CommentCard from "./CommentCard";
 import Voter from "./Voter";
 import CommentPoster from "./CommentPoster";
@@ -60,7 +60,7 @@ class SingleArticle extends Component {
         </Loading>
       );
     return (
-      <Background>
+      <main className="middle-area--content">
         SINGLE ARTICLE CARD
         <Card>
           <h2>{this.state.article.title}</h2>
@@ -79,7 +79,7 @@ class SingleArticle extends Component {
         {this.state.comments.map(comment => {
           return <CommentCard key={comment.comment_id} comment={comment} />;
         })}
-      </Background>
+      </main>
     );
   }
 }
