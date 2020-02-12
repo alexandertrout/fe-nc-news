@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import styled from "styled-components";
+// import styled from "styled-components";
 import { StyledLink } from "../styling/styled-components";
 import * as api from "../utils/api";
 
@@ -38,14 +38,14 @@ class MenuBar extends Component {
   }
 }
 
-const Menu = styled.div`
-  background-color: grey;
-  color: white;
-  text-decoration: none;
-  display: grid;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-`;
+// const Menu = styled.div`
+//   background-color: grey;
+//   color: white;
+//   text-decoration: none;
+//   display: grid;
+//   border-bottom-left-radius: 10px;
+//   border-bottom-right-radius: 10px;
+// `;
 
 export default MenuBar;
 
