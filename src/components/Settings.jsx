@@ -36,6 +36,7 @@ class Settings extends Component {
       { Orange: "#f09c00" },
       { Blue: "#4883a8" },
       { Green: "#299454" },
+      { Grey: "#bab6ba" },
       { Pink: "#ffc0bf" },
       { Red: "#b80d0d" }
     ]
