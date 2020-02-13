@@ -12,6 +12,11 @@ import { Link } from "@reach/router";
 // export const RubberDiv = styled.div`
 //   animation: 1s ${rubberAnimation};
 // `;
+export const StyledContentArea = styled.main`
+  padding: 1vh 0vh;
+  min-height: 150vh;
+  background-color: ${props => props.colour};
+`;
 
 export const StyledLink = styled(Link)`
   text-decoration: none;

@@ -3,6 +3,7 @@ import * as api from "../utils/api";
 import UserCard from "./UserCard";
 import styled, { keyframes } from "styled-components";
 import { fadeInDown } from "react-animations";
+import { StyledContentArea } from "../styling/styled-components";
 
 const bounceAnimation = keyframes`${fadeInDown}`;
 const BounceDiv = styled.div`
@@ -33,7 +34,8 @@ class Logins extends Component {
   state = {
     users: [],
     updated: false,
-    selectedUser: ""
+    selectedUser: "",
+    firstRender: true
   };
 
   componentDidMount = () => {
@@ -44,7 +46,7 @@ class Logins extends Component {
 
   componentDidUpdate = (prevProps, prevState) => {
     if (prevState.selectedUser !== this.state.selectedUser) {
-      this.setState({ updated: true });
+      this.setState({ updated: true, firstRender: false });
     }
   };
 
@@ -54,9 +56,9 @@ class Logins extends Component {
 
   render() {
     return (
-      <>
+      <StyledContentArea colour={this.props.colour}>
         {this.state.updated && <BounceDiv> New User Selected!</BounceDiv>}
-        {!this.state.updated && (
+        {!this.state.updated && !this.state.firstRender && (
           <NotBounceDiv> New User Selected!</NotBounceDiv>
         )}
         <StyledUserSection>
@@ -71,7 +73,7 @@ class Logins extends Component {
             );
           })}
         </StyledUserSection>
-      </>
+      </StyledContentArea>
     );
   }
 }

@@ -5,7 +5,8 @@ import {
   Loading,
   StyledLink,
   StyledButton,
-  StyledDeleteButton
+  StyledDeleteButton,
+  StyledContentArea
 } from "../styling/styled-components";
 import CommentCard from "./CommentCard";
 import Voter from "./Voter";
@@ -85,7 +86,7 @@ class SingleArticle extends Component {
         </main>
       );
     return (
-      <main className="middle-area--content">
+      <StyledContentArea colour={this.props.colour}>
         <Card>
           <h2>{this.state.article.title}</h2>
           <h3>{this.state.article.author}</h3>
@@ -116,7 +117,7 @@ class SingleArticle extends Component {
             />
           );
         })}
-      </main>
+      </StyledContentArea>
     );
   }
 }

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import * as api from "../utils/api";
+import { StyledContentArea } from "../styling/styled-components";
 
 const FormContainer = styled.section`
   margin: 2vh;
@@ -78,42 +79,44 @@ class ArticlePoster extends Component {
   render() {
     console.log(this.state.article);
     return (
-      <FormContainer>
-        <ArticleForm onSubmit={this.handleSubmit}>
-          <StyledInput
-            onChange={this.handleTitleChange}
-            type="text"
-            value={this.state.title}
-            placeholder="Article Title..."
-          />
-          <StyledInput
-            onChange={this.handleBodyChange}
-            type="text"
-            value={this.state.body}
-            placeholder="Article Body..."
-          />
-          Select Topic:
-          <StyledSelect
-            className="form-select"
-            id=""
-            onChange={this.handleTopicChange}
-          >
-            {this.state.topics.map(topic => {
-              return (
-                <option
-                  key={topic.slug}
-                  className="form-select"
-                  value={topic.slug}
-                >
-                  {topic.slug}
-                </option>
-              );
-            })}
-          </StyledSelect>
-          <button>SUBMIT</button>
-          {this.state.hasPosted && <h2>Article Posted</h2>}
-        </ArticleForm>
-      </FormContainer>
+      <StyledContentArea colour={this.props.colour}>
+        <FormContainer>
+          <ArticleForm onSubmit={this.handleSubmit}>
+            <StyledInput
+              onChange={this.handleTitleChange}
+              type="text"
+              value={this.state.title}
+              placeholder="Article Title..."
+            />
+            <StyledInput
+              onChange={this.handleBodyChange}
+              type="text"
+              value={this.state.body}
+              placeholder="Article Body..."
+            />
+            Select Topic:
+            <StyledSelect
+              className="form-select"
+              id=""
+              onChange={this.handleTopicChange}
+            >
+              {this.state.topics.map(topic => {
+                return (
+                  <option
+                    key={topic.slug}
+                    className="form-select"
+                    value={topic.slug}
+                  >
+                    {topic.slug}
+                  </option>
+                );
+              })}
+            </StyledSelect>
+            <button>SUBMIT</button>
+            {this.state.hasPosted && <h2>Article Posted</h2>}
+          </ArticleForm>
+        </FormContainer>
+      </StyledContentArea>
     );
   }
 }

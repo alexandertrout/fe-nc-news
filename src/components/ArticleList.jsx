@@ -1,19 +1,16 @@
 import React, { Component } from "react";
 import ArticleCard from "./ArticleCard";
 import * as api from "../utils/api";
-import { StyledLink, Loading } from "../styling/styled-components";
+import {
+  StyledLink,
+  Loading,
+  StyledContentArea
+} from "../styling/styled-components";
 import { BarLoader } from "react-spinners";
 import styled from "styled-components";
 
-const StyledForm = styled.form`
-  background-color: orange;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-`;
-
 const Styledh2 = styled.h2`
+  padding: 1vh;
   background-color: black;
   color: white;
   align-items: center;
@@ -28,10 +25,13 @@ class ArticleList extends Component {
     rubber: false
   };
   componentDidMount = () => {
+    console.log(this.props.location);
     const params = {
       topic: this.props.topic_slug,
       sort_by: this.state.sort_by,
-      author: this.props.location.state.author
+      author: this.props.location.state
+        ? this.props.location.state.author
+        : undefined
     };
     api.getAllArticles(params).then(articles => {
       this.setState({ articles: articles, isLoading: false });
@@ -39,15 +39,18 @@ class ArticleList extends Component {
   };
 
   componentDidUpdate = (prevProps, prevState) => {
+    console.log(this.props.location);
     if (
       prevState.sort_by !== this.state.sort_by ||
       prevProps.topic_slug !== this.props.topic_slug ||
-      prevProps.location.state.author !== this.props.location.state.author
+      prevProps.location.state !== this.props.location.state
     ) {
       const params = {
         topic: this.props.topic_slug,
         sort_by: this.state.sort_by,
-        author: this.props.location.state.author
+        author: this.props.location.state
+          ? this.props.location.state.author
+          : undefined
       };
       api.getAllArticles(params).then(articles => {
         this.setState({ articles: articles, isLoading: false });
@@ -61,6 +64,15 @@ class ArticleList extends Component {
   };
 
   render() {
+    // console.log(this.props);
+    const StyledForm = styled.form`
+      background-color: ${this.props.colour};
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+    `;
+
     if (this.state.isLoading)
       return (
         <Loading className="loader">
@@ -72,8 +84,8 @@ class ArticleList extends Component {
         </Loading>
       );
     return (
-      <main className="middle-area--content">
-        {this.props.location.state.author && (
+      <StyledContentArea colour={this.props.colour}>
+        {this.props.location.state && this.props.location.state.author && (
           <Styledh2>Articles By: {this.props.location.state.author}</Styledh2>
         )}
         <StyledForm onChange={this.handleChange}>
@@ -102,7 +114,7 @@ class ArticleList extends Component {
             </StyledLink>
           );
         })}
-      </main>
+      </StyledContentArea>
     );
   }
 }
