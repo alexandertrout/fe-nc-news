@@ -13,6 +13,13 @@ const StyledForm = styled.form`
   align-items: center;
 `;
 
+const Styledh2 = styled.h2`
+  background-color: black;
+  color: white;
+  align-items: center;
+  font-family: customFont;
+`;
+
 class ArticleList extends Component {
   state = {
     articles: [],
@@ -23,7 +30,8 @@ class ArticleList extends Component {
   componentDidMount = () => {
     const params = {
       topic: this.props.topic_slug,
-      sort_by: this.state.sort_by
+      sort_by: this.state.sort_by,
+      author: this.props.location.state.author
     };
     api.getAllArticles(params).then(articles => {
       this.setState({ articles: articles, isLoading: false });
@@ -33,11 +41,13 @@ class ArticleList extends Component {
   componentDidUpdate = (prevProps, prevState) => {
     if (
       prevState.sort_by !== this.state.sort_by ||
-      prevProps.topic_slug !== this.props.topic_slug
+      prevProps.topic_slug !== this.props.topic_slug ||
+      prevProps.location.state.author !== this.props.location.state.author
     ) {
       const params = {
         topic: this.props.topic_slug,
-        sort_by: this.state.sort_by
+        sort_by: this.state.sort_by,
+        author: this.props.location.state.author
       };
       api.getAllArticles(params).then(articles => {
         this.setState({ articles: articles, isLoading: false });
@@ -63,6 +73,9 @@ class ArticleList extends Component {
       );
     return (
       <main className="middle-area--content">
+        {this.props.location.state.author && (
+          <Styledh2>Articles By: {this.props.location.state.author}</Styledh2>
+        )}
         <StyledForm onChange={this.handleChange}>
           <select className="form-select" id="" name="" form="">
             <option className="form-select" value="created_at">

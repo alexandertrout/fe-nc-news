@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { Card, Info } from "../styling/styled-components";
+import { Card, Info, StyledLinkGrey } from "../styling/styled-components";
 import Voter from "./Voter";
 import * as api from "../utils/api";
 
@@ -32,7 +32,11 @@ class CommentCard extends Component {
     if (this.state.isDeleted === true) return <Card> Comment Deleted </Card>;
     return (
       <Card>
-        <h3>{this.props.comment.author}</h3>
+        <h3>
+          <StyledLinkGrey to="/" state={{ author: this.props.comment.author }}>
+            {this.props.comment.author}
+          </StyledLinkGrey>
+        </h3>
         <Info>
           <p>{this.props.comment.body}</p>
           <FormatDiv>

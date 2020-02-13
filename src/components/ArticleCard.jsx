@@ -1,10 +1,12 @@
 import React, { Component } from "react";
+import { Link } from "@reach/router";
 import {
   Card,
   Info,
   CirclesArea,
   VoteCircle,
-  CommentCircle
+  CommentCircle,
+  StyledLinkGrey
 } from "../styling/styled-components";
 
 class ArticleCard extends Component {
@@ -19,11 +21,24 @@ class ArticleCard extends Component {
       <Card>
         <h2> {this.props.article.title}</h2>
         <Info>
-          <p>
-            Topic: {this.props.article.topic} <br />
-            Author: {this.props.article.author} <br />
-            Votes: {this.props.article.votes}
-          </p>
+          <div>
+            <p>
+              Topic:{" "}
+              <StyledLinkGrey to={`/articles/${this.props.article.topic}`}>
+                {this.props.article.topic}{" "}
+              </StyledLinkGrey>
+            </p>
+            <p>
+              Author:{" "}
+              <StyledLinkGrey
+                to="/"
+                state={{ author: this.props.article.author }}
+              >
+                {this.props.article.author}{" "}
+              </StyledLinkGrey>
+            </p>
+            <p> Votes: {this.props.article.votes}</p>
+          </div>
           <CirclesArea>
             <VoteCircle>{this.props.article.votes}</VoteCircle>
             <CommentCircle>{this.props.article.comment_count}</CommentCircle>

@@ -18,6 +18,11 @@ export const StyledLink = styled(Link)`
   color: whitesmoke;
 `;
 
+export const StyledLinkGrey = styled(Link)`
+  text-decoration: none;
+  color: gray;
+`;
+
 export const Card = styled.section`
   margin: 0vh 0vh 1vh 0vh;
   padding: 2vw;

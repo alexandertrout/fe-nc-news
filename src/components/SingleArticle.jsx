@@ -88,6 +88,7 @@ class SingleArticle extends Component {
       <main className="middle-area--content">
         <Card>
           <h2>{this.state.article.title}</h2>
+          <h3>{this.state.article.author}</h3>
           <p>{this.state.article.body}</p>
           <Voter
             type={"articles"}
