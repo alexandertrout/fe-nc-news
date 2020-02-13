@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { Card, Info, StyledLinkGrey } from "../styling/styled-components";
+import {
+  Card,
+  Info,
+  StyledLinkGrey,
+  StyledDeleteButton
+} from "../styling/styled-components";
 import Voter from "./Voter";
 import * as api from "../utils/api";
 
@@ -48,7 +53,9 @@ class CommentCard extends Component {
           </FormatDiv>
         </Info>
         {this.props.comment.author === this.state.user && (
-          <button onClick={this.handleClick}>DELETE</button>
+          <StyledDeleteButton onClick={this.handleClick}>
+            DELETE
+          </StyledDeleteButton>
         )}
       </Card>
     );

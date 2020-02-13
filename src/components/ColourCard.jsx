@@ -8,7 +8,14 @@ class ColourCard extends Component {
   };
 
   render() {
+    // const Around = styled.div`
+    //   display: flex;
+    //   flex-direction: column;
+    //   justify-content: center;
+    // `;
+
     const Colour = styled.div`
+      border-radius: 4px;
       margin: 0vh 0vh 1vh 0vh;
       padding: 3vh;
       min-height: 10vh;
@@ -22,17 +29,15 @@ class ColourCard extends Component {
       border-radius: 4px;
     `;
     return (
-      <div>
-        <Colour>
-          <h3>{Object.keys(this.props.colour)[0]}</h3>
-          <StyledButton
-            value={Object.keys(this.props.colour)[0]}
-            onClick={this.buttonClick}
-          >
-            Select
-          </StyledButton>
-        </Colour>
-      </div>
+      <Colour>
+        <h3>{Object.keys(this.props.colour)[0]}</h3>
+        <StyledButton
+          value={Object.keys(this.props.colour)[0]}
+          onClick={this.buttonClick}
+        >
+          Select
+        </StyledButton>
+      </Colour>
     );
   }
 }

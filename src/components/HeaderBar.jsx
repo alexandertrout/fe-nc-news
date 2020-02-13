@@ -17,12 +17,20 @@ const HeaderBar = () => {
     <section className="header-bar">
       <HeaderDiv>
         <Link to="settings/*" className="link">
-          Settings
+          <img
+            src="https://image.flaticon.com/icons/svg/148/148890.svg"
+            alt="cc"
+          ></img>
         </Link>
         <Link to="/" className="link">
           <h1>NC NEWS</h1>
         </Link>
-        <StyledLink to="/posting/article">POST AN ARTICLE</StyledLink>
+        <StyledLink to="/posting/article">
+          <img
+            src="https://image.flaticon.com/icons/svg/1040/1040228.svg"
+            alt="cc"
+          ></img>
+        </StyledLink>
       </HeaderDiv>
     </section>
   );

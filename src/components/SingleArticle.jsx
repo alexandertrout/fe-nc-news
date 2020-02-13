@@ -6,7 +6,8 @@ import {
   StyledLink,
   StyledButton,
   StyledDeleteButton,
-  StyledContentArea
+  StyledContentArea,
+  StyledLinkGrey
 } from "../styling/styled-components";
 import CommentCard from "./CommentCard";
 import Voter from "./Voter";
@@ -89,7 +90,14 @@ class SingleArticle extends Component {
       <StyledContentArea colour={this.props.colour}>
         <Card>
           <h2>{this.state.article.title}</h2>
-          <h3>{this.state.article.author}</h3>
+          <h3>
+            <StyledLinkGrey
+              to="/"
+              state={{ author: this.state.article.author }}
+            >
+              {this.state.article.author}
+            </StyledLinkGrey>
+          </h3>
           <p>{this.state.article.body}</p>
           <Voter
             type={"articles"}

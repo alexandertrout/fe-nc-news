@@ -1,5 +1,11 @@
 import React, { Component } from "react";
 import * as api from "../utils/api";
+import styled from "styled-components";
+const StyledVotes = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+`;
 
 class Voter extends Component {
   state = {
@@ -15,25 +21,43 @@ class Voter extends Component {
 
   render() {
     return (
-      <section>
+      <StyledVotes>
         <button
           disabled={this.state.optimisticVotes > 0}
           onClick={() => {
             this.handleClick(1);
           }}
         >
-          UPVOTE
+          <img
+            className="vote"
+            src={
+              this.state.optimisticVotes > 0
+                ? "https://image.flaticon.com/icons/svg/2107/2107638.svg"
+                : "https://image.flaticon.com/icons/svg/2107/2107593.svg"
+            }
+            alt="tick"
+          ></img>
         </button>
-        <p>{this.props.votes + this.state.optimisticVotes}</p>
+        <p className="voterNum">
+          {this.props.votes + this.state.optimisticVotes}
+        </p>
         <button
           disabled={this.state.optimisticVotes < 0}
           onClick={() => {
             this.handleClick(-1);
           }}
         >
-          DOWNVOTE
+          <img
+            className="vote"
+            src={
+              this.state.optimisticVotes < 0
+                ? "https://image.flaticon.com/icons/svg/1828/1828665.svg"
+                : "https://image.flaticon.com/icons/svg/1828/1828774.svg"
+            }
+            alt="tick"
+          ></img>
         </button>
-      </section>
+      </StyledVotes>
     );
   }
 }

@@ -31,10 +31,10 @@ body {
   color: white;
 }
 
-.middle-area--content {
+/* .middle-area--content {
   min-height: 150vh;
   background-color: orange;
-}
+} */
 
 .bottom-menu {
   text-align: center;
@@ -80,8 +80,32 @@ p {
   margin: 1;
 }
 
+.voterNum {
+  text-align: center;
+}
+
 div {
   margin: 0;
+}
+
+img {
+  height: 6vh;
+  width: 6vh;
+}
+
+button {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+.vote {
+  height: 4vh;
+  width: 4vh;
 }
 
 input {
@@ -107,4 +131,22 @@ input {
 
 form {
   margin: 0 0 1vh 0;
+}
+
+.demo8-item {
+  position: absolute;
+  width: 320px;
+  height: 90px;
+  overflow: visible;
+  pointer-events: auto;
+  transform-origin: 50% 50% 0px;
+  border-radius: 4px;
+  color: rgb(153, 153, 153);
+  line-height: 96px;
+  padding-left: 32px;
+  font-size: 24px;
+  font-weight: 400;
+  background-color: rgb(255, 255, 255);
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
 }

@@ -25,6 +25,7 @@ export const MiddleArea = styled.section`
 `;
 
 export const StyledContentArea = styled.main`
+  overflow: scroll;
   padding: 1vh 0vh;
   min-height: 150vh;
   background-color: ${props => props.colour};
@@ -91,10 +92,11 @@ export const VoteCircle = styled.div`
   height: 7vh;
   width: 7vh;
   background-image: url("https://i.ya-webdesign.com/images/white-heart-icon-png-7.png");
+  /* https://i.ya-webdesign.com/images/white-heart-icon-png-7.png" */
   background-size: cover;
   color: black;
   text-decoration: none;
-  border-radius: 50px;
+  /* border-radius: 50px; */
   display: flex;
   justify-content: center;
   align-items: center;

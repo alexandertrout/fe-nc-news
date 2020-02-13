@@ -11,7 +11,7 @@ const User = styled.div`
   }
   padding: 1vw;
   min-height: 10vh;
-  width: 20vw;
+  width: 15vw;
   background-color: whitesmoke;
   color: black;
   display: flex;

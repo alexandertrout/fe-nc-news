@@ -8,15 +8,11 @@ import { StyledContentArea } from "../styling/styled-components";
 const bounceAnimation = keyframes`${fadeInDown}`;
 const BounceDiv = styled.div`
   animation: 1s ${bounceAnimation};
-  margin: 2vh 15vw 2vh 15vw;
-  width: 70vw;
   border-radius: 4px;
   background: whitesmoke;
   font-size: 4vh;
 `;
 const NotBounceDiv = styled.div`
-  margin: 2vh 15vw 2vh 15vw;
-  width: 70vw;
   border-radius: 4px;
   background: whitesmoke;
   font-size: 4vh;
