@@ -7,6 +7,7 @@ import HeaderBar from "./components/HeaderBar";
 import Logins from "./components/Logins";
 import ArticlePoster from "./components/ArticlePoster";
 import Settings from "./components/Settings";
+import { MiddleArea } from "./styling/styled-components";
 
 class App extends Component {
   state = {
@@ -23,11 +24,10 @@ class App extends Component {
   };
 
   render() {
-    console.log(this.state);
     return (
       <div className="outer-container">
         <HeaderBar />
-        <section className="middle-area">
+        <MiddleArea colour={this.state.colour}>
           <Router>
             <ArticleList path="/" colour={this.state.colour} />
             <ArticleList
@@ -55,7 +55,7 @@ class App extends Component {
               colour={this.state.colour}
             />
           </Router>
-        </section>
+        </MiddleArea>
         <MenuBar />
       </div>
     );

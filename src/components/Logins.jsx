@@ -23,10 +23,14 @@ const NotBounceDiv = styled.div`
 `;
 
 const StyledUserSection = styled.section`
-  margin: 1vh;
+  @media only screen and (max-width: 700px) {
+    margin: 1vh;
+    grid-gap: 1vh;
+  }
+  margin: 4vh 0vh;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 1vh;
+  grid-gap: 4vh;
   justify-items: center;
 `;
 

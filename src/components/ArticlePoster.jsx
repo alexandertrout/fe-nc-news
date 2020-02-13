@@ -94,7 +94,6 @@ class ArticlePoster extends Component {
               value={this.state.body}
               placeholder="Article Body..."
             />
-            Select Topic:
             <StyledSelect
               className="form-select"
               id=""

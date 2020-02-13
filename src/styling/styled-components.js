@@ -12,10 +12,23 @@ import { Link } from "@reach/router";
 // export const RubberDiv = styled.div`
 //   animation: 1s ${rubberAnimation};
 // `;
+
+export const MiddleArea = styled.section`
+  grid-row-start: 2;
+  grid-row-end: 3;
+  color: black;
+  text-decoration: none;
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+  background-color: ${props => props.colour};
+`;
+
 export const StyledContentArea = styled.main`
   padding: 1vh 0vh;
   min-height: 150vh;
   background-color: ${props => props.colour};
+  max-width: 800px;
 `;
 
 export const StyledLink = styled(Link)`
@@ -32,6 +45,7 @@ export const Card = styled.section`
   margin: 0vh 0vh 1vh 0vh;
   padding: 2vw;
   min-height: 20vh;
+  border-radius: 6px;
   overflow: auto;
   background-color: whitesmoke;
   color: black;

@@ -3,10 +3,15 @@ import { StyledButton } from "../styling/styled-components";
 import styled from "styled-components";
 
 const User = styled.div`
-  margin: 0vh 0vh 1vh 0vh;
+  @media only screen and (max-width: 700px) {
+    margin: 0vh 0vh 1vh 0vh;
+    padding: 1vw;
+    min-height: 10vh;
+    width: 42vw;
+  }
   padding: 1vw;
   min-height: 10vh;
-  width: 42vw;
+  width: 20vw;
   background-color: whitesmoke;
   color: black;
   display: flex;

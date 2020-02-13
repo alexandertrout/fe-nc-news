@@ -31,15 +31,6 @@ body {
   color: white;
 }
 
-.middle-area {
-  grid-row-start: 2;
-  grid-row-end: 3;
-  color: black;
-  text-decoration: none;
-  overflow: auto;
-  /* max-width: 600px; */
-}
-
 .middle-area--content {
   min-height: 150vh;
   background-color: orange;
@@ -112,4 +103,8 @@ input {
 .link {
   text-decoration: none;
   color: white;
+}
+
+form {
+  margin: 0 0 1vh 0;
 }
