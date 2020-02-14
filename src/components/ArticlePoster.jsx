@@ -17,24 +17,28 @@ const ArticleForm = styled.form`
   padding: 2vh;
   background-color: whitesmoke;
   height: 75vh;
+  border-radius: 10px;
 `;
 
 const StyledTitleInput = styled.input`
   padding: 2vh;
   background-color: whitesmoke;
   height: 10vh;
+  font-size: 36px;
 `;
 
-const StyledInput = styled.input`
+const StyledInput = styled.textarea`
   padding: 2vh;
   background-color: whitesmoke;
   height: 20vh;
+  width: 80%;
+  font-size: 16px;
 `;
 
 const StyledSelect = styled.select`
   padding: 2vh;
   background-color: whitesmoke;
-  height: 10vh;
+  height: 5vh;
 `;
 
 class ArticlePoster extends Component {
@@ -48,7 +52,8 @@ class ArticlePoster extends Component {
     topics: [],
     hasPosted: false,
     article_id: 0,
-    err: null
+    err: null,
+    submit: false
   };
 
   componentDidMount = () => {
@@ -88,20 +93,26 @@ class ArticlePoster extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
+    this.setState({ submit: true });
     api
       .postArticle(this.state.article)
       .then(response => {
-        console.log(response);
         if (response.status === 201) {
           this.setState({
             hasPosted: true,
-            article_id: response.data.article.article_id
+            article_id: response.data.article.article_id,
+            body: "",
+            title: ""
           });
         }
       })
       .catch(err => {
         this.setState({ err: err.response });
       });
+  };
+
+  handleReset = event => {
+    this.setState({ submit: false });
   };
 
   render() {
@@ -141,12 +152,16 @@ class ArticlePoster extends Component {
                 );
               })}
             </StyledSelect>
-            <StyledButton>SUBMIT</StyledButton>
-            {this.state.hasPosted && (
+            {this.state.submit !== true && <StyledButton>SUBMIT</StyledButton>}
+            {this.state.submit !== false && (
               <StyledLinkGrey to={`/article/${this.state.article_id}`}>
                 <br></br>
                 View Article
               </StyledLinkGrey>
+            )}{" "}
+            <br></br>
+            {this.state.submit !== false && (
+              <StyledButton onClick={this.handleReset}>RESET</StyledButton>
             )}
           </ArticleForm>
         </FormContainer>

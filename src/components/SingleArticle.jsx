@@ -64,8 +64,6 @@ class SingleArticle extends Component {
   addComment = comment => {
     this.setState(currentState => {
       return { comments: [comment, ...currentState.comments] };
-    }).catch(err => {
-      this.setState({ err: err.response });
     });
   };
 
@@ -74,11 +72,7 @@ class SingleArticle extends Component {
       api.deleteArticleById(this.state.article.article_id).catch(err => {
         this.setState({ err: err.response });
       });
-      this.setState({ isDeleted: true }).catch(err => {
-        this.setState({ err: err.response });
-      });
-    } else {
-      console.log("WRONG USER");
+      this.setState({ isDeleted: true });
     }
   };
 
