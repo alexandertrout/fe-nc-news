@@ -60,6 +60,7 @@ class CommentPoster extends Component {
           type="text"
           value={this.state.comment.body}
           placeholder="Post a comment..."
+          required
         />
         <StyledButton>Post</StyledButton>
       </form>

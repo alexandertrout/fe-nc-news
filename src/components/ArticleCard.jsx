@@ -16,31 +16,38 @@ class ArticleCard extends Component {
   componentDidMount = () => {};
 
   render() {
+    const {
+      created_at,
+      title,
+      topic,
+      author,
+      votes,
+      comment_count
+    } = this.props.article;
+    let date = created_at.substring(0, 7);
     return (
       <Card>
-        <h2> {this.props.article.title}</h2>
-        <Info>
+        <h2> {title}</h2>
+        <Info id="7">
           <div>
             <p>
               Topic:{" "}
-              <StyledLinkGrey to={`/articles/${this.props.article.topic}`}>
-                {this.props.article.topic}{" "}
+              <StyledLinkGrey to={`/articles/${topic}`}>
+                {topic}{" "}
               </StyledLinkGrey>
             </p>
             <p>
               Author:{" "}
-              <StyledLinkGrey
-                to="/"
-                state={{ author: this.props.article.author }}
-              >
-                {this.props.article.author}{" "}
+              <StyledLinkGrey to="/" state={{ author }}>
+                {author}{" "}
               </StyledLinkGrey>
             </p>
-            <p> Votes: {this.props.article.votes}</p>
+            <p> Posted: {date}</p>
+            <p> Votes: {votes}</p>
           </div>
           <CirclesArea>
-            <VoteCircle>{this.props.article.votes}</VoteCircle>
-            <CommentCircle>{this.props.article.comment_count}</CommentCircle>
+            <VoteCircle>{votes}</VoteCircle>
+            <CommentCircle>{comment_count}</CommentCircle>
           </CirclesArea>
         </Info>
       </Card>

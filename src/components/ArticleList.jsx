@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ArticleCard from "./ArticleCard";
+import ErrorPage from "./ErrorPage";
 import * as api from "../utils/api";
 import {
   StyledLink,
@@ -22,10 +23,10 @@ class ArticleList extends Component {
     articles: [],
     sort_by: "created_at",
     isLoading: true,
-    rubber: false
+    rubber: false,
+    err: null
   };
   componentDidMount = () => {
-    console.log(this.props.location);
     const params = {
       topic: this.props.topic_slug,
       sort_by: this.state.sort_by,
@@ -33,13 +34,17 @@ class ArticleList extends Component {
         ? this.props.location.state.author
         : undefined
     };
-    api.getAllArticles(params).then(articles => {
-      this.setState({ articles: articles, isLoading: false });
-    });
+    api
+      .getAllArticles(params)
+      .then(articles => {
+        this.setState({ articles: articles, isLoading: false, err: null });
+      })
+      .catch(err => {
+        this.setState({ err: err.response });
+      });
   };
 
   componentDidUpdate = (prevProps, prevState) => {
-    console.log(this.props.location);
     if (
       prevState.sort_by !== this.state.sort_by ||
       prevProps.topic_slug !== this.props.topic_slug ||
@@ -52,9 +57,14 @@ class ArticleList extends Component {
           ? this.props.location.state.author
           : undefined
       };
-      api.getAllArticles(params).then(articles => {
-        this.setState({ articles: articles, isLoading: false });
-      });
+      api
+        .getAllArticles(params)
+        .then(articles => {
+          this.setState({ articles: articles, isLoading: false, err: null });
+        })
+        .catch(err => {
+          this.setState({ err });
+        });
     }
   };
 
@@ -64,15 +74,17 @@ class ArticleList extends Component {
   };
 
   render() {
-    // console.log(this.props);
+    const { colour, location } = this.props;
     const StyledForm = styled.form`
-      background-color: ${this.props.colour};
+      background-color: ${colour};
       display: flex;
       flex-direction: column;
       justify-content: space-around;
       align-items: center;
     `;
-
+    if (this.state.err) {
+      return <ErrorPage err={this.state.err} />;
+    }
     if (this.state.isLoading)
       return (
         <Loading className="loader">
@@ -84,9 +96,9 @@ class ArticleList extends Component {
         </Loading>
       );
     return (
-      <StyledContentArea colour={this.props.colour}>
-        {this.props.location.state && this.props.location.state.author && (
-          <Styledh2>Articles By: {this.props.location.state.author}</Styledh2>
+      <StyledContentArea colour={colour}>
+        {location.state && location.state.author && (
+          <Styledh2>Articles By: {location.state.author}</Styledh2>
         )}
         <StyledForm onChange={this.handleChange}>
           <select className="form-select" id="" name="" form="">

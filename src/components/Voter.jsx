@@ -20,10 +20,11 @@ class Voter extends Component {
   };
 
   render() {
+    const { optimisticVotes } = this.state;
     return (
       <StyledVotes>
         <button
-          disabled={this.state.optimisticVotes > 0}
+          disabled={optimisticVotes > 0}
           onClick={() => {
             this.handleClick(1);
           }}
@@ -31,18 +32,16 @@ class Voter extends Component {
           <img
             className="vote"
             src={
-              this.state.optimisticVotes > 0
+              optimisticVotes > 0
                 ? "https://image.flaticon.com/icons/svg/2107/2107638.svg"
                 : "https://image.flaticon.com/icons/svg/2107/2107593.svg"
             }
             alt="tick"
           ></img>
         </button>
-        <p className="voterNum">
-          {this.props.votes + this.state.optimisticVotes}
-        </p>
+        <p className="voterNum">{this.props.votes + optimisticVotes}</p>
         <button
-          disabled={this.state.optimisticVotes < 0}
+          disabled={optimisticVotes < 0}
           onClick={() => {
             this.handleClick(-1);
           }}
@@ -50,7 +49,7 @@ class Voter extends Component {
           <img
             className="vote"
             src={
-              this.state.optimisticVotes < 0
+              optimisticVotes < 0
                 ? "https://image.flaticon.com/icons/svg/1828/1828665.svg"
                 : "https://image.flaticon.com/icons/svg/1828/1828774.svg"
             }

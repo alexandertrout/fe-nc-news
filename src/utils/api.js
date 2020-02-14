@@ -51,6 +51,7 @@ exports.getCommentsByArticleId = article_id => {
 };
 
 exports.postCommentByArticleId = (article_id, username, body) => {
+  console.log(body);
   return axios
     .post(
       `https://alex-be-nc-news.herokuapp.com/api/articles/${article_id}/comments`,

@@ -8,6 +8,7 @@ import Logins from "./components/Logins";
 import ArticlePoster from "./components/ArticlePoster";
 import Settings from "./components/Settings";
 import { MiddleArea } from "./styling/styled-components";
+import ErrorPage from "./components/ErrorPage";
 
 class App extends Component {
   state = {
@@ -26,7 +27,7 @@ class App extends Component {
   render() {
     return (
       <div className="outer-container">
-        <HeaderBar />
+        <HeaderBar user={this.state.user} />
         <MiddleArea colour={this.state.colour}>
           <Router>
             <ArticleList path="/" colour={this.state.colour} />
@@ -54,6 +55,7 @@ class App extends Component {
               updateColour={this.updateColour}
               colour={this.state.colour}
             />
+            <ErrorPage default colour={this.state.colour} />
           </Router>
         </MiddleArea>
         <MenuBar />

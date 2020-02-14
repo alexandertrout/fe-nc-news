@@ -8,12 +8,6 @@ class ColourCard extends Component {
   };
 
   render() {
-    // const Around = styled.div`
-    //   display: flex;
-    //   flex-direction: column;
-    //   justify-content: center;
-    // `;
-
     const Colour = styled.div`
       border-radius: 4px;
       margin: 0vh 0vh 1vh 0vh;

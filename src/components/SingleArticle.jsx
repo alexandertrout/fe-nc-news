@@ -67,17 +67,15 @@ class SingleArticle extends Component {
   };
 
   render() {
-    if (this.state.isLoading)
+    const { isLoading, isDeleted, article, comments } = this.state;
+    const { colour, user } = this.props;
+    if (isLoading)
       return (
         <Loading>
-          <BarLoader
-            size={200}
-            color={"black"}
-            loading={this.state.isLoading}
-          />
+          <BarLoader size={200} color={"black"} loading={isLoading} />
         </Loading>
       );
-    if (this.state.isDeleted)
+    if (isDeleted)
       return (
         <main className="middle-area--content">
           <Card>Article Has Been Deleted</Card>
@@ -87,24 +85,21 @@ class SingleArticle extends Component {
         </main>
       );
     return (
-      <StyledContentArea colour={this.props.colour}>
+      <StyledContentArea colour={colour}>
         <Card>
-          <h2>{this.state.article.title}</h2>
+          <h2>{article.title}</h2>
           <h3>
-            <StyledLinkGrey
-              to="/"
-              state={{ author: this.state.article.author }}
-            >
-              {this.state.article.author}
+            <StyledLinkGrey to="/" state={{ author: article.author }}>
+              {article.author}
             </StyledLinkGrey>
           </h3>
-          <p>{this.state.article.body}</p>
+          <p>{article.body}</p>
           <Voter
             type={"articles"}
-            votes={this.state.article.votes || 0}
-            id={this.state.article.article_id}
+            votes={article.votes || 0}
+            id={article.article_id}
           />
-          {this.props.user === this.state.article.author && (
+          {user === article.author && (
             <StyledDeleteButton onClick={this.handleClick}>
               DELETE
             </StyledDeleteButton>
@@ -112,16 +107,16 @@ class SingleArticle extends Component {
         </Card>
         <h3>COMMENTS</h3>
         <CommentPoster
-          article_id={this.state.article.article_id}
+          article_id={article.article_id}
           addComment={this.addComment}
-          user={this.props.user}
+          user={user}
         />
-        {this.state.comments.map(comment => {
+        {comments.map(comment => {
           return (
             <CommentCard
               key={comment.comment_id}
               comment={comment}
-              user={this.props.user}
+              user={user}
             />
           );
         })}

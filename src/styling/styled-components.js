@@ -1,17 +1,5 @@
 import styled from "styled-components";
 import { Link } from "@reach/router";
-// import { keyframes } from "styled-components";
-// import { fadeInRightBig, rubberBand } from "react-animations";
-
-// export const fadeAnimation = keyframes`${fadeInRightBig}`;
-// export const FadeInDiv = styled.div`
-//   animation: 1s ${fadeAnimation};
-// `;
-
-// export const rubberAnimation = keyframes`${rubberBand}`;
-// export const RubberDiv = styled.div`
-//   animation: 1s ${rubberAnimation};
-// `;
 
 export const MiddleArea = styled.section`
   grid-row-start: 2;
@@ -47,7 +35,7 @@ export const Card = styled.section`
   padding: 2vw;
   min-height: 20vh;
   border-radius: 6px;
-  overflow: auto;
+  /* overflow: auto; */
   background-color: whitesmoke;
   color: black;
   text-decoration: none;
@@ -92,11 +80,9 @@ export const VoteCircle = styled.div`
   height: 7vh;
   width: 7vh;
   background-image: url("https://i.ya-webdesign.com/images/white-heart-icon-png-7.png");
-  /* https://i.ya-webdesign.com/images/white-heart-icon-png-7.png" */
   background-size: cover;
   color: black;
   text-decoration: none;
-  /* border-radius: 50px; */
   display: flex;
   justify-content: center;
   align-items: center;

@@ -12,7 +12,7 @@ const HeaderDiv = styled.div`
   grid-template-rows: 1fr;
 `;
 
-const HeaderBar = () => {
+const HeaderBar = props => {
   return (
     <section className="header-bar">
       <HeaderDiv>
@@ -24,6 +24,9 @@ const HeaderBar = () => {
         </Link>
         <Link to="/" className="link">
           <h1>NC NEWS</h1>
+          <StyledLink to="/logins">
+            <p1>{props.user}</p1>
+          </StyledLink>
         </Link>
         <StyledLink to="/posting/article">
           <img

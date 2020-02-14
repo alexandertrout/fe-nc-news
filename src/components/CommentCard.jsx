@@ -34,25 +34,23 @@ class CommentCard extends Component {
   };
 
   render() {
-    if (this.state.isDeleted === true) return <Card> Comment Deleted </Card>;
+    const { isDeleted, user } = this.state;
+    const { author, body, votes, comment_id } = this.props.comment;
+    if (isDeleted === true) return <Card> Comment Deleted </Card>;
     return (
       <Card>
         <h3>
-          <StyledLinkGrey to="/" state={{ author: this.props.comment.author }}>
-            {this.props.comment.author}
+          <StyledLinkGrey to="/" state={{ author }}>
+            {author}
           </StyledLinkGrey>
         </h3>
         <Info>
-          <p>{this.props.comment.body}</p>
+          <p>{body}</p>
           <FormatDiv>
-            <Voter
-              type={"comments"}
-              votes={this.props.comment.votes || 0}
-              id={this.props.comment.comment_id}
-            />
+            <Voter type={"comments"} votes={votes || 0} id={comment_id} />
           </FormatDiv>
         </Info>
-        {this.props.comment.author === this.state.user && (
+        {author === user && (
           <StyledDeleteButton onClick={this.handleClick}>
             DELETE
           </StyledDeleteButton>

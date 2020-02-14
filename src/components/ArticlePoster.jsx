@@ -1,16 +1,27 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import * as api from "../utils/api";
-import { StyledContentArea } from "../styling/styled-components";
+import {
+  StyledContentArea,
+  StyledButton,
+  StyledLinkGrey
+} from "../styling/styled-components";
 
 const FormContainer = styled.section`
   margin: 2vh;
+  align-items: center;
 `;
 
 const ArticleForm = styled.form`
   padding: 2vh;
   background-color: whitesmoke;
   height: 75vh;
+`;
+
+const StyledTitleInput = styled.input`
+  padding: 2vh;
+  background-color: whitesmoke;
+  height: 10vh;
 `;
 
 const StyledInput = styled.input`
@@ -34,7 +45,8 @@ class ArticlePoster extends Component {
       body: ""
     },
     topics: [],
-    hasPosted: false
+    hasPosted: false,
+    article_id: 0
   };
 
   componentDidMount = () => {
@@ -70,29 +82,34 @@ class ArticlePoster extends Component {
   handleSubmit = event => {
     event.preventDefault();
     api.postArticle(this.state.article).then(response => {
+      console.log(response);
       if (response.status === 201) {
-        this.setState({ hasPosted: true });
+        this.setState({
+          hasPosted: true,
+          article_id: response.data.article.article_id
+        });
       }
     });
   };
 
   render() {
-    console.log(this.state.article);
     return (
       <StyledContentArea colour={this.props.colour}>
         <FormContainer>
           <ArticleForm onSubmit={this.handleSubmit}>
-            <StyledInput
+            <StyledTitleInput
               onChange={this.handleTitleChange}
               type="text"
               value={this.state.title}
               placeholder="Article Title..."
+              required
             />
             <StyledInput
               onChange={this.handleBodyChange}
               type="text"
               value={this.state.body}
               placeholder="Article Body..."
+              required
             />
             <StyledSelect
               className="form-select"
@@ -111,8 +128,13 @@ class ArticlePoster extends Component {
                 );
               })}
             </StyledSelect>
-            <button>SUBMIT</button>
-            {this.state.hasPosted && <h2>Article Posted</h2>}
+            <StyledButton>SUBMIT</StyledButton>
+            {this.state.hasPosted && (
+              <StyledLinkGrey to={`/article/${this.state.article_id}`}>
+                <br></br>
+                View Article
+              </StyledLinkGrey>
+            )}
           </ArticleForm>
         </FormContainer>
       </StyledContentArea>
