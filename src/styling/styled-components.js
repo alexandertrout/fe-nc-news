@@ -34,7 +34,6 @@ export const Card = styled.section`
   margin: 0vh 0vh 1vh 0vh;
   padding: 2vw;
   min-height: 20vh;
-  min-width: 35vw;
   border-radius: 6px;
   background-color: whitesmoke;
   color: black;

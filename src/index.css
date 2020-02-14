@@ -19,6 +19,14 @@ body {
   text-align: center;
   text-decoration: none !important;
 }
+
+@media only screen and (max-width: 600px) {
+  .outer-container {
+    height: 100vh;
+    grid-template-rows: 10vh 70vh 8vh;
+  }
+}
+
 .header-bar {
   display: flex;
   flex-direction: column;
@@ -30,11 +38,6 @@ body {
   background-color: black;
   color: white;
 }
-
-/* .middle-area--content {
-  min-height: 150vh;
-  background-color: orange;
-} */
 
 .bottom-menu {
   text-align: center;

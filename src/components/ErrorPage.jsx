@@ -22,10 +22,7 @@ const ErrorPage = props => {
           loopTime={100}
           pauseAllowed={true}
           restartAllowed={false}
-          onLoose={
-            (context: Context) => console.log("Ding")
-            // alert(`You lost with ${context.game.points} points.`)
-          }
+          onLoose={(context: Context) => console.log("Ding")}
           onPause={(context: Context) => alert("paused")}
           onRestart={(context: Context) => alert("restarted")}
           onResume={(context: Context) => alert("onResume")}
