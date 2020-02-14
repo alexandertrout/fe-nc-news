@@ -8,6 +8,7 @@ import {
 } from "../styling/styled-components";
 import Voter from "./Voter";
 import * as api from "../utils/api";
+import ErrorPage from "./ErrorPage";
 
 const FormatDiv = styled.div`
   text-align: center;
@@ -19,14 +20,17 @@ class CommentCard extends Component {
   state = {
     article: {},
     user: this.props.user,
-    isDeleted: false
+    isDeleted: false,
+    err: null
   };
 
   componentDidMount = () => {};
 
   handleClick = () => {
     if (this.props.comment.author === this.state.user) {
-      api.deleteCommentById(this.props.comment.comment_id);
+      api.deleteCommentById(this.props.comment.comment_id).catch(err => {
+        this.setState({ err: err.response });
+      });
       this.setState({ isDeleted: true });
     } else {
       console.log("WRONG USER");
@@ -36,6 +40,7 @@ class CommentCard extends Component {
   render() {
     const { isDeleted, user } = this.state;
     const { author, body, votes, comment_id } = this.props.comment;
+    if (this.state.err) return <ErrorPage err={this.state.err} />;
     if (isDeleted === true) return <Card> Comment Deleted </Card>;
     return (
       <Card>

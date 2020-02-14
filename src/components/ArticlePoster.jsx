@@ -6,6 +6,7 @@ import {
   StyledButton,
   StyledLinkGrey
 } from "../styling/styled-components";
+import ErrorPage from "./ErrorPage";
 
 const FormContainer = styled.section`
   margin: 2vh;
@@ -46,13 +47,19 @@ class ArticlePoster extends Component {
     },
     topics: [],
     hasPosted: false,
-    article_id: 0
+    article_id: 0,
+    err: null
   };
 
   componentDidMount = () => {
-    api.getAllTopics().then(topics => {
-      this.setState({ topics });
-    });
+    api
+      .getAllTopics()
+      .then(topics => {
+        this.setState({ topics });
+      })
+      .catch(err => {
+        this.setState({ err: err.response });
+      });
   };
 
   handleTitleChange = event => {
@@ -81,18 +88,24 @@ class ArticlePoster extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    api.postArticle(this.state.article).then(response => {
-      console.log(response);
-      if (response.status === 201) {
-        this.setState({
-          hasPosted: true,
-          article_id: response.data.article.article_id
-        });
-      }
-    });
+    api
+      .postArticle(this.state.article)
+      .then(response => {
+        console.log(response);
+        if (response.status === 201) {
+          this.setState({
+            hasPosted: true,
+            article_id: response.data.article.article_id
+          });
+        }
+      })
+      .catch(err => {
+        this.setState({ err: err.response });
+      });
   };
 
   render() {
+    if (this.state.err) return <ErrorPage err={this.state.err} />;
     return (
       <StyledContentArea colour={this.props.colour}>
         <FormContainer>

@@ -13,26 +13,32 @@ import CommentCard from "./CommentCard";
 import Voter from "./Voter";
 import CommentPoster from "./CommentPoster";
 import { BarLoader } from "react-spinners";
+import ErrorPage from "./ErrorPage";
 
 class SingleArticle extends Component {
   state = {
     article: {},
     comments: [],
     isLoading: true,
-    isDeleted: false
+    isDeleted: false,
+    err: null
   };
   componentDidMount = () => {
     const promises = [
       api.getArticleById(this.props.article_id),
       api.getCommentsByArticleId(this.props.article_id)
     ];
-    Promise.all(promises).then(dataArray => {
-      this.setState({
-        article: dataArray[0],
-        comments: dataArray[1],
-        isLoading: false
+    Promise.all(promises)
+      .then(dataArray => {
+        this.setState({
+          article: dataArray[0],
+          comments: dataArray[1],
+          isLoading: false
+        });
+      })
+      .catch(err => {
+        this.setState({ err: err.response });
       });
-    });
   };
   componentDidUpdate = prevProps => {
     if (prevProps.article_id !== this.props.article_id) {
@@ -41,32 +47,43 @@ class SingleArticle extends Component {
         api.getArticleById(this.props.article_id),
         api.getCommentsByArticleId(this.props.article_id)
       ];
-      Promise.all(promises).then(dataArray => {
-        this.setState({
-          article: dataArray[0],
-          comments: dataArray[1],
-          isLoading: false
+      Promise.all(promises)
+        .then(dataArray => {
+          this.setState({
+            article: dataArray[0],
+            comments: dataArray[1],
+            isLoading: false
+          });
+        })
+        .catch(err => {
+          this.setState({ err: err.response });
         });
-      });
     }
   };
 
   addComment = comment => {
     this.setState(currentState => {
       return { comments: [comment, ...currentState.comments] };
+    }).catch(err => {
+      this.setState({ err: err.response });
     });
   };
 
   handleClick = () => {
     if (this.props.user === this.state.article.author) {
-      api.deleteArticleById(this.state.article.article_id);
-      this.setState({ isDeleted: true });
+      api.deleteArticleById(this.state.article.article_id).catch(err => {
+        this.setState({ err: err.response });
+      });
+      this.setState({ isDeleted: true }).catch(err => {
+        this.setState({ err: err.response });
+      });
     } else {
       console.log("WRONG USER");
     }
   };
 
   render() {
+    if (this.state.err) return <ErrorPage err={this.state.err} />;
     const { isLoading, isDeleted, article, comments } = this.state;
     const { colour, user } = this.props;
     if (isLoading)
