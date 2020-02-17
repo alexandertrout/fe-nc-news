@@ -101,7 +101,7 @@ export const StyledButton = styled.button`
   border: none;
   background-color: black;
   color: white;
-  font-size: 14px;
+  font-size: 2vh;
   border-radius: 8px;
 `;
 
